@@ -1,0 +1,76 @@
+﻿@model MAS_TestiranjeSoftvera_Projekat.Domain.Osoba
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Delete">
+
+            <input type="hidden" asp-for="OsobaId" class="form-control" readonly="readonly" />
+
+            <div class="form-group">
+                <label asp-for="MaticniBroj" class="control-label"></label>
+                <input asp-for="MaticniBroj" class="form-control"  readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ime" class="control-label"></label>
+                <input asp-for="Ime" class="form-control"  readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prezime" class="control-label"></label>
+                <input asp-for="Prezime" class="form-control"  readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Visina" class="control-label"></label>
+                <input asp-for="Visina" class="form-control"  readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tezina" class="control-label"></label>
+                <input asp-for="Tezina" class="form-control"  readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="BojaOciju" class="control-label"></label>
+                <input asp-for="BojaOciju" class="form-control"  readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefon" class="control-label"></label>
+                <input asp-for="Telefon" class="form-control"  readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control"  readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumRodjenja" class="control-label"></label>
+                <input asp-for="DatumRodjenja" class="form-control"  readonly="readonly"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adresa" class="control-label"></label>
+                <input asp-for="Adresa" class="form-control"  readonly="readonly"/>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Napomena" class="control-label"></label>
+                <input asp-for="Napomena" class="form-control"  readonly="readonly"/>
+             
+            </div>
+            <div class="form-group">
+                <label class="control-label">Mesto</label>
+                <select asp-for="MestoId" class="form-control" asp-items="ViewBag.MestoId"  readonly="readonly"></select>
+              
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Obrisi" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,85 @@
+﻿@model MAS_TestiranjeSoftvera_Projekat.Domain.Osoba
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      
+            <div class="form-group">
+                <label asp-for="MaticniBroj" class="control-label"></label>
+                <input id="mBroj" asp-for="MaticniBroj" class="form-control" />
+                <span id="spanMBroj" asp-validation-for="MaticniBroj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ime" class="control-label"></label>
+                <input id="ime" asp-for="Ime" class="form-control" />
+                <span id="spanIme" asp-validation-for="Ime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prezime" class="control-label"></label>
+                <input id="prezime" asp-for="Prezime" class="form-control" />
+                <span id="spanPrezime" asp-validation-for="Prezime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Visina" class="control-label"></label>
+                <input id="visina" asp-for="Visina" class="form-control" />
+                <span id="spanVisina" asp-validation-for="Visina" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tezina" class="control-label"></label>
+                <input id="tezina"  asp-for="Tezina" class="form-control" />
+                <span id="spanTezina" asp-validation-for="Tezina" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BojaOciju" class="control-label"></label>
+                <input id="bojaOciju"  asp-for="BojaOciju" class="form-control" />
+                <span id="spanBojaOciju" asp-validation-for="BojaOciju" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefon" class="control-label"></label>
+                <input id="telefon"  asp-for="Telefon" class="form-control" />
+                <span id="spanTelefon" asp-validation-for="Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input id="email"  asp-for="Email" class="form-control" />
+                <span id="spanEmail" asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumRodjenja" class="control-label"></label>
+                <input id="datumRodjenja"  asp-for="DatumRodjenja" class="form-control" />
+                <span id="spanDatumRodjenja" asp-validation-for="DatumRodjenja" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adresa" class="control-label"></label>
+                <input id="adresa" asp-for="Adresa" class="form-control" />
+                <span id="spanAdresa" asp-validation-for="Adresa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Napomena" class="control-label"></label>
+                <input id="napomena" asp-for="Napomena" class="form-control" />
+                <span id="spanNapomena" asp-validation-for="Napomena" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label  class="control-label">Mesto</label>
+                <select id="mestoId" asp-for="MestoId" class="form-control" asp-items="ViewBag.MestoId"></select>
+                <span id="spanMesto" asp-validation-for="MestoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="btnCreate" class="btn btn-success" value="Sacuvaj" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
