@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatedUITests", "Automat
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DatabaseTestProject", "DatabaseTestProject\DatabaseTestProject.sqlproj", "{389D35DA-B6D2-40C5-82F3-E34FFF504D39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProcedureInsertMesto", "TestProcedureInsertMesto\TestProcedureInsertMesto.csproj", "{7C380A71-1300-4F11-AD91-BAB7FC4AE518}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseTesting", "TestProcedureInsertMesto\DatabaseTesting.csproj", "{7C380A71-1300-4F11-AD91-BAB7FC4AE518}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

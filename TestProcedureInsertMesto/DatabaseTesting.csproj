@@ -58,17 +58,35 @@
   </Choose>
   <ItemGroup>
     <Compile Include="SqlDatabaseSetup.cs" />
+    <Compile Include="SqlServerTestInvalidEmail.cs">
+      <SubType>Designer</SubType>
+    </Compile>
     <Compile Include="SqlServerTestProcedureInsertMesto.cs">
       <SubType>Designer</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTestTriger.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="SqlServerTestValidEmail.cs">
+      <SubType>Designer</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="SqlServerTestInvalidEmail.resx">
+      <DependentUpon>SqlServerTestInvalidEmail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SqlServerTestProcedureInsertMesto.resx">
       <DependentUpon>SqlServerTestProcedureInsertMesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SqlServerTestTriger.resx">
+      <DependentUpon>SqlServerTestTriger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SqlServerTestValidEmail.resx">
+      <DependentUpon>SqlServerTestValidEmail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

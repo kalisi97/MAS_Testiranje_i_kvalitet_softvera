@@ -38,24 +38,29 @@ namespace TestProcedureInsertMesto
         private void InitializeComponent()
         {
             Microsoft.Data.Tools.Schema.Sql.UnitTesting.SqlDatabaseTestAction dbo_PROC_INSERT_MESTOTest_TestAction;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlServerTestProcedureInsertMesto));
             Microsoft.Data.Tools.Schema.Sql.UnitTesting.Conditions.RowCountCondition rowCountCondition1;
             Microsoft.Data.Tools.Schema.Sql.UnitTesting.SqlDatabaseTestAction dbo_PROC_INSERT_MESTOTest_PosttestAction;
+            Microsoft.Data.Tools.Schema.Sql.UnitTesting.SqlDatabaseTestAction dbo_PROC_INSERT_MESTOTest_PretestAction;
+            Microsoft.Data.Tools.Schema.Sql.UnitTesting.Conditions.NotEmptyResultSetCondition notEmptyResultSetCondition1;
+            Microsoft.Data.Tools.Schema.Sql.UnitTesting.Conditions.ExecutionTimeCondition executionTimeCondition1;
+            Microsoft.Data.Tools.Schema.Sql.UnitTesting.Conditions.ExpectedSchemaCondition expectedSchemaCondition1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlServerTestProcedureInsertMesto));
             this.dbo_PROC_INSERT_MESTOTestData = new Microsoft.Data.Tools.Schema.Sql.UnitTesting.SqlDatabaseTestActions();
             dbo_PROC_INSERT_MESTOTest_TestAction = new Microsoft.Data.Tools.Schema.Sql.UnitTesting.SqlDatabaseTestAction();
             rowCountCondition1 = new Microsoft.Data.Tools.Schema.Sql.UnitTesting.Conditions.RowCountCondition();
             dbo_PROC_INSERT_MESTOTest_PosttestAction = new Microsoft.Data.Tools.Schema.Sql.UnitTesting.SqlDatabaseTestAction();
+            dbo_PROC_INSERT_MESTOTest_PretestAction = new Microsoft.Data.Tools.Schema.Sql.UnitTesting.SqlDatabaseTestAction();
+            notEmptyResultSetCondition1 = new Microsoft.Data.Tools.Schema.Sql.UnitTesting.Conditions.NotEmptyResultSetCondition();
+            executionTimeCondition1 = new Microsoft.Data.Tools.Schema.Sql.UnitTesting.Conditions.ExecutionTimeCondition();
+            expectedSchemaCondition1 = new Microsoft.Data.Tools.Schema.Sql.UnitTesting.Conditions.ExpectedSchemaCondition();
             // 
             // dbo_PROC_INSERT_MESTOTest_TestAction
             // 
             dbo_PROC_INSERT_MESTOTest_TestAction.Conditions.Add(rowCountCondition1);
+            dbo_PROC_INSERT_MESTOTest_TestAction.Conditions.Add(notEmptyResultSetCondition1);
+            dbo_PROC_INSERT_MESTOTest_TestAction.Conditions.Add(executionTimeCondition1);
+            dbo_PROC_INSERT_MESTOTest_TestAction.Conditions.Add(expectedSchemaCondition1);
             resources.ApplyResources(dbo_PROC_INSERT_MESTOTest_TestAction, "dbo_PROC_INSERT_MESTOTest_TestAction");
-            // 
-            // dbo_PROC_INSERT_MESTOTestData
-            // 
-            this.dbo_PROC_INSERT_MESTOTestData.PosttestAction = dbo_PROC_INSERT_MESTOTest_PosttestAction;
-            this.dbo_PROC_INSERT_MESTOTestData.PretestAction = null;
-            this.dbo_PROC_INSERT_MESTOTestData.TestAction = dbo_PROC_INSERT_MESTOTest_TestAction;
             // 
             // rowCountCondition1
             // 
@@ -67,6 +72,35 @@ namespace TestProcedureInsertMesto
             // dbo_PROC_INSERT_MESTOTest_PosttestAction
             // 
             resources.ApplyResources(dbo_PROC_INSERT_MESTOTest_PosttestAction, "dbo_PROC_INSERT_MESTOTest_PosttestAction");
+            // 
+            // dbo_PROC_INSERT_MESTOTestData
+            // 
+            this.dbo_PROC_INSERT_MESTOTestData.PosttestAction = dbo_PROC_INSERT_MESTOTest_PosttestAction;
+            this.dbo_PROC_INSERT_MESTOTestData.PretestAction = dbo_PROC_INSERT_MESTOTest_PretestAction;
+            this.dbo_PROC_INSERT_MESTOTestData.TestAction = dbo_PROC_INSERT_MESTOTest_TestAction;
+            // 
+            // dbo_PROC_INSERT_MESTOTest_PretestAction
+            // 
+            resources.ApplyResources(dbo_PROC_INSERT_MESTOTest_PretestAction, "dbo_PROC_INSERT_MESTOTest_PretestAction");
+            // 
+            // notEmptyResultSetCondition1
+            // 
+            notEmptyResultSetCondition1.Enabled = true;
+            notEmptyResultSetCondition1.Name = "notEmptyResultSetCondition1";
+            notEmptyResultSetCondition1.ResultSet = 1;
+            // 
+            // executionTimeCondition1
+            // 
+            executionTimeCondition1.Enabled = true;
+            executionTimeCondition1.ExecutionTime = System.TimeSpan.Parse("00:00:30");
+            executionTimeCondition1.Name = "executionTimeCondition1";
+            // 
+            // expectedSchemaCondition1
+            // 
+            expectedSchemaCondition1.Enabled = true;
+            expectedSchemaCondition1.Name = "expectedSchemaCondition1";
+            resources.ApplyResources(expectedSchemaCondition1, "expectedSchemaCondition1");
+            expectedSchemaCondition1.Verbose = false;
         }
 
         #endregion
