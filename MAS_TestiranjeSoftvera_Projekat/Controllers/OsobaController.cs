@@ -25,11 +25,14 @@ namespace MAS_TestiranjeSoftvera_Projekat.Controllers
         }
 
         // GET: OsobaController
-        public ActionResult Index()
+        public ActionResult Index(int? expect)
         {
             try
             {
-                var osobe = service.SelectAll();
+                IEnumerable<Osoba> osobe = new List<Osoba>();
+
+                osobe = expect == null ? service.SelectAll() : service.SelectAllAdults();
+
                 return View(osobe);
             }
             catch (Exception ex)
@@ -43,6 +46,7 @@ namespace MAS_TestiranjeSoftvera_Projekat.Controllers
         public ActionResult Create()
         {
             MestoDropDownList();
+            BojaOcijuDropDownList();
             return View();
         }
 
@@ -73,6 +77,7 @@ namespace MAS_TestiranjeSoftvera_Projekat.Controllers
             try
             {
                 MestoDropDownList();
+                BojaOcijuDropDownList();
                 var entity = service.SelectById(id);
                 return View(entity);
             }
@@ -90,8 +95,12 @@ namespace MAS_TestiranjeSoftvera_Projekat.Controllers
         {
             try
             {
-                service.Update(osoba);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    service.Update(osoba);
+                    return RedirectToAction("Index");
+                }
+                return View(osoba);
             }
             catch (Exception ex)
             {
@@ -141,9 +150,16 @@ namespace MAS_TestiranjeSoftvera_Projekat.Controllers
             ViewBag.MestoId = new SelectList(mestaQuery.AsNoTracking(), "MestoId", "Naziv", mesto);
         }
 
+        private void BojaOcijuDropDownList(object boja = null)
+        {
+            List<string> listaBoja = Enum.GetNames(typeof(Extensions.Enums.BojaOciju)).ToList();
+            ViewBag.Boja = new SelectList(listaBoja, boja);
+        }
         [AcceptVerbs("GET", "POST")]
         public IActionResult VerifikujMaticniBroj(string maticniBroj)
         {
+            if(!Int64.TryParse(maticniBroj,out long broj))
+                return Json("Maticni broj, nije u dobrom formatu!");
             if (maticniBroj.Length != 13)
             {
                 return Json("Maticni broj, nije u dobrom formatu!");
@@ -164,8 +180,8 @@ namespace MAS_TestiranjeSoftvera_Projekat.Controllers
         [AcceptVerbs("GET", "POST")]
         public IActionResult VerifikujEmail(string email)
         {
-            string[] strings = email.ToString().Split('@');
-            bool valid = strings[1].ToUpper() == (".rs").ToUpper();
+            string[] strings = email.Split('@');
+            bool valid = strings[1].ToUpper().Contains((".rs").ToUpper());
             if (!valid)
                 return Json("Email se mora završavati domenom: .rs");
  

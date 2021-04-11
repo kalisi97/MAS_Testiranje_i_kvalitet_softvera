@@ -69,8 +69,10 @@ namespace MAS_TestiranjeSoftvera_Projekat.Controllers
         {
             try
             {
-                var entity = service.SelectById(id);
-                return View(entity);
+              
+                    var entity = service.SelectById(id);
+                    return View(entity);
+             
             }
             catch (Exception ex)
             {
@@ -85,13 +87,17 @@ namespace MAS_TestiranjeSoftvera_Projekat.Controllers
         {
             try
             {
-                var mestoIzBaze = service.SelectById(mesto.MestoId);
-                if (mestoIzBaze == null)
-                    throw new Exception("Trazeno mesto ne postoji!");
-                else
-                    service.Update(mesto);
+                if (ModelState.IsValid)
+                {
+                    var mestoIzBaze = service.SelectById(mesto.MestoId);
+                    if (mestoIzBaze == null)
+                        throw new Exception("Trazeno mesto ne postoji!");
+                    else
+                        service.Update(mesto);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                return View(mesto);
             }
             catch(Exception ex)
             {

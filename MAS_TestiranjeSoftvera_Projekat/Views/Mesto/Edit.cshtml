@@ -15,22 +15,22 @@
          
             <div class="form-group">
                 <label asp-for="Naziv" class="control-label"></label>
-                <input asp-for="Naziv" class="form-control" />
-                <span asp-validation-for="Naziv" class="text-danger"></span>
+                <input id="naziv" asp-for="Naziv" class="form-control" />
+                <span id="spanNaziv" asp-validation-for="Naziv" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PttBroj" class="control-label"></label>
-                <input asp-for="PttBroj" class="form-control" />
-                <span asp-validation-for="PttBroj" class="text-danger"></span>
+                <input id="pttBroj" asp-for="PttBroj" class="form-control" />
+                <span id="spanPttBroj" asp-validation-for="PttBroj" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BrojStanovnika" class="control-label"></label>
-                <input asp-for="BrojStanovnika" class="form-control" />
-                <span asp-validation-for="BrojStanovnika" class="text-danger"></span>
+                <input id="brojStanovnika" asp-for="BrojStanovnika" class="form-control" />
+                <span id="spanBrojStanovnika" asp-validation-for="BrojStanovnika" class="text-danger"></span>
             </div>
       
             <div class="form-group">
-                <input type="submit" value="Sacuvaj" class="btn btn-primary" />
+                <input type="submit" id="btnUpdate" value="Sacuvaj" class="btn btn-primary" />
             </div>
         </form>
     </div>

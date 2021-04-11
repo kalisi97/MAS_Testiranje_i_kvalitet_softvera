@@ -13,8 +13,8 @@
             <input type="hidden" asp-for="OsobaId" class="form-control" readonly="readonly" />
 
             <div class="form-group">
-                <label asp-for="MaticniBroj" class="control-label"></label>
-                <input asp-for="MaticniBroj" class="form-control"  readonly="readonly"/>
+                <label  asp-for="MaticniBroj" class="control-label"></label>
+                <input id="mBroj" asp-for="MaticniBroj" class="form-control"  readonly="readonly"/>
             </div>
             <div class="form-group">
                 <label asp-for="Ime" class="control-label"></label>
@@ -64,7 +64,7 @@
               
             </div>
             <div class="form-group">
-                <input type="submit" value="Obrisi" class="btn btn-danger" />
+                <input type="submit" id="btnDelete" value="Obrisi" class="btn btn-danger" />
             </div>
         </form>
     </div>

@@ -13,5 +13,7 @@ namespace MAS_TestiranjeSoftvera_Projekat.BusinessLogicLayer
         IEnumerable<T> SelectAll();
         T SelectById(int? id);
         bool Validate(T entity, out string poruka);
+
+        bool AlreadyExist(T entity);
     }
 }

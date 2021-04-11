@@ -41,6 +41,8 @@ namespace MAS_TestiranjeSoftvera_Projekat.BusinessLogicLayer.Implementations
         {
             if (entity == null)
                 throw new ArgumentNullException();
+            if (AlreadyExist(entity))
+                throw new Exception("Mesto vec postoji!");
             if (!Validate(entity, out string poruka))
                 throw new Exception("Nevalidan unos za parametar: " + poruka);
             try
@@ -133,6 +135,16 @@ namespace MAS_TestiranjeSoftvera_Projekat.BusinessLogicLayer.Implementations
             {
                 throw new Exception("Greska prilikom unosa mesta!");
             }
+        }
+
+        public bool AlreadyExist(Mesto entity)
+        {
+            var mesta = SelectAll();
+            foreach(var m in mesta)
+            {
+                if (m.Equals(entity)) return true;
+            }
+            return false;
         }
     }
 }

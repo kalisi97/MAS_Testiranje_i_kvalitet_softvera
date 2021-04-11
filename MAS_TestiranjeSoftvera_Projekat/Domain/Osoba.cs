@@ -41,8 +41,6 @@ namespace MAS_TestiranjeSoftvera_Projekat.Domain
         [Required(ErrorMessage = "Odaberite mesto!")]
         public int? MestoId { get; set; }
         public Mesto Mesto { get; set; }
- 
-
 
     }
 }

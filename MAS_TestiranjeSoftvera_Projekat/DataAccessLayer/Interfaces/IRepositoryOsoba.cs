@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MAS_TestiranjeSoftvera_Projekat.DataAccessLayer.Interfaces
 {
-    public interface IRepositoryOsoba:IBaseRepository<Osoba>
+    public interface IRepositoryOsoba : IBaseRepository<Osoba>
     {
+        IEnumerable<Osoba> SelectAllAdults();
     }
 }

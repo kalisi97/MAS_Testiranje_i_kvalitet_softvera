@@ -62,7 +62,14 @@ namespace MAS_TestiranjeSoftvera_Projekat.DataAccessLayer.Implementations
             {
                 entity.OsobaId = broker.VratiSifru("OsobaId", "Osoba");
                 DatabaseConnection.broker.konekcija.Open();
-               
+
+                broker.komanda =
+                  new SqlCommand("SELECT dbo.validEmail(@email)", broker.konekcija);
+                broker.komanda.Parameters.AddWithValue("@email", entity.Email);
+                broker.komanda.CommandType = CommandType.Text;
+                int validEmail = Convert.ToInt32(broker.komanda.ExecuteScalar());
+                if (validEmail == 0)
+                    throw new Exception("Nevalidan unos email-a!");
                 broker.komanda =
                     new SqlCommand("PROC_INSERT_OSOBA", broker.konekcija);
                 broker.komanda.CommandType = CommandType.StoredProcedure;
@@ -73,7 +80,7 @@ namespace MAS_TestiranjeSoftvera_Projekat.DataAccessLayer.Implementations
                 broker.komanda.Parameters.AddWithValue("Prezime", SqlDbType.NVarChar).Value = entity.Prezime;
                 broker.komanda.Parameters.AddWithValue("Visina", entity.Visina == 0 ? DBNull.Value : entity.Visina);
                 broker.komanda.Parameters.AddWithValue("Tezina", entity.Tezina == 0 ? DBNull.Value : entity.Tezina);
-                broker.komanda.Parameters.AddWithValue("BojaOciju", entity.BojaOciju == 0 ? DBNull.Value : entity.BojaOciju);
+                broker.komanda.Parameters.AddWithValue("BojaOciju", entity.BojaOciju == 0 ? DBNull.Value : (int)entity.BojaOciju);
                 broker.komanda.Parameters.AddWithValue("Telefon", String.IsNullOrEmpty(entity.Telefon) ? DBNull.Value : entity.Telefon);
                 broker.komanda.Parameters.AddWithValue("Email", SqlDbType.VarChar).Value = entity.Email;
                 broker.komanda.Parameters.AddWithValue("DatumRodjenja", SqlDbType.Date).Value = entity.DatumRodjenja;
@@ -225,6 +232,15 @@ namespace MAS_TestiranjeSoftvera_Projekat.DataAccessLayer.Implementations
 
                 DatabaseConnection.broker.konekcija.Open();
                 transakcija = broker.konekcija.BeginTransaction();
+
+                broker.komanda =
+                new SqlCommand("SELECT dbo.validEmail(@email)", broker.konekcija);
+                broker.komanda.Parameters.AddWithValue("@email", entity.Email);
+                broker.komanda.CommandType = CommandType.Text;
+                int validEmail = Convert.ToInt32(broker.komanda.ExecuteScalar());
+                if (validEmail == 0)
+                    throw new Exception("Nevalidan unos email-a!");
+
                 broker.komanda =
                     new SqlCommand("", broker.konekcija, transakcija);
                 broker.komanda.CommandText =
@@ -269,10 +285,59 @@ namespace MAS_TestiranjeSoftvera_Projekat.DataAccessLayer.Implementations
                         ? 0 : int.Parse(citac[nazivKolone].ToString());
             return data;
         }
-
-        public int VratiSifru(string nazivKolone, string nazivTabele)
+        public IEnumerable<Osoba> SelectAllAdults()
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                List<Osoba> osobe = new List<Osoba>();
+
+                broker.konekcija.Open();
+                broker.komanda = new SqlCommand("", broker.konekcija, transakcija);
+                broker.komanda.CommandText = $"Select * from PunoletneOsobe";
+
+                SqlDataReader citac = broker.komanda.ExecuteReader();
+
+                while (citac.Read())
+                {
+                    Osoba osoba = new Osoba
+                    {
+                        OsobaId = citac.GetInt32(0),
+                        MaticniBroj = citac.GetString(1),
+                        Ime = citac.GetString(2),
+                        Prezime = citac.GetString(3),
+                        Visina = GetIntValueOrDefault(citac, "visina"),
+                        Tezina = GetIntValueOrDefault(citac, "tezina"),
+                        BojaOciju = (BojaOciju)GetIntValueOrDefault(citac, "boja_ociju"),
+                        Telefon = GetStringValueOrDefault(citac, "kontakt"),
+                        Email = citac.GetString(8),
+                        DatumRodjenja = citac.GetDateTime(9),
+                        Adresa = GetStringValueOrDefault(citac, "adresa"),
+                        Napomena = GetStringValueOrDefault(citac, "napomena"),
+                        Mesto = new Mesto
+                        {
+                            MestoId = citac.GetInt32(12),
+                            Naziv = citac.GetString(13),
+                          //  PttBroj = citac.GetInt32(15),
+                            //BrojStanovnika = GetIntValueOrDefault(citac, "BrojStanovnika")
+                        }
+
+                    };
+                    osobe.Add(osoba);
+                }
+                citac.Close();
+
+                return osobe;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (broker.konekcija != null)
+                    broker.konekcija.Close();
+            }
         }
     }
 }

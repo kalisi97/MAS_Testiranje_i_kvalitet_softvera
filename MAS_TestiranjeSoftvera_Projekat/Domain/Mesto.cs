@@ -22,7 +22,22 @@ namespace MAS_TestiranjeSoftvera_Projekat.Domain
         [Remote(action: "VerifikujBrojStanovnika", controller: "Mesto")]
         public int? BrojStanovnika { get; set; }
         public virtual IEnumerable<Osoba> Osobe { get; set; }
-   
+
+        public override bool Equals(object obj)
+        {
+            Mesto m = obj as Mesto;
+            if(m != null)
+            {
+                if (m.Naziv == this.Naziv && m.PttBroj == this.PttBroj)
+                    return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
 
     }
 }

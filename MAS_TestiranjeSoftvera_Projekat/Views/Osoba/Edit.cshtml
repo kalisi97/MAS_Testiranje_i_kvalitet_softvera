@@ -40,7 +40,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="BojaOciju" class="control-label"></label>
-                <input asp-for="BojaOciju" class="form-control" />
+                <select id="bojaOciju" asp-for="BojaOciju" class="form-control" asp-items="ViewBag.Boja"></select>
                 <span asp-validation-for="BojaOciju" class="text-danger"></span>
             </div>
             <div class="form-group">

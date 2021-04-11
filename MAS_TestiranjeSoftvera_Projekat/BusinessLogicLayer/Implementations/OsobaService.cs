@@ -17,6 +17,17 @@ namespace MAS_TestiranjeSoftvera_Projekat.BusinessLogicLayer.Implementations
             this.repository = repository;
         }
 
+        public bool AlreadyExist(Osoba entity)
+        {
+            var osobe = SelectAll();
+            foreach(var o in osobe)
+            {
+                if (o.MaticniBroj == entity.MaticniBroj)
+                    return true;
+            }
+            return false;
+        }
+
         public string Delete(Osoba entity)
         {
             if (entity == null)
@@ -42,9 +53,10 @@ namespace MAS_TestiranjeSoftvera_Projekat.BusinessLogicLayer.Implementations
           
                 if (entity == null)
                     throw new ArgumentNullException();
+            if (AlreadyExist(entity))
+                throw new Exception("Ova osoba vec postoji u sistemu!");
                 if (!Validate(entity, out string poruka))
                     throw new Exception("Nevalidan unos za parametar: " + poruka);
-           
               
                 try
                 {
@@ -53,7 +65,7 @@ namespace MAS_TestiranjeSoftvera_Projekat.BusinessLogicLayer.Implementations
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Greska prilikom unosa osobe!");
+                    throw new Exception("Greska prilikom unosa osobe! "+ex.Message);
                 }
             
         }
@@ -63,6 +75,19 @@ namespace MAS_TestiranjeSoftvera_Projekat.BusinessLogicLayer.Implementations
             try
             {
                 return repository.SelectAll();
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Greska prilikom ucitavanja osoba!");
+            }
+        }
+
+        public IEnumerable<Osoba> SelectAllAdults()
+        {
+            try
+            {
+                return repository.SelectAllAdults();
             }
             catch (Exception)
             {

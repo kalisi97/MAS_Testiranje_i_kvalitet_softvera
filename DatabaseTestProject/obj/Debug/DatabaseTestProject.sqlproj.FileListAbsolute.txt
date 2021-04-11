@@ -1,0 +1,6 @@
+C:\Users\user\source\repos\MAS_TestiranjeSoftvera_Projekat\DatabaseTestProject\bin\Debug\DatabaseTestProject.dacpac
+C:\Users\user\source\repos\MAS_TestiranjeSoftvera_Projekat\DatabaseTestProject\bin\Debug\DatabaseTestProject.dll
+C:\Users\user\source\repos\MAS_TestiranjeSoftvera_Projekat\DatabaseTestProject\bin\Debug\DatabaseTestProject.pdb
+C:\Users\user\source\repos\MAS_TestiranjeSoftvera_Projekat\DatabaseTestProject\obj\Debug\DatabaseTestProject.sqlprojAssemblyReference.cache
+C:\Users\user\source\repos\MAS_TestiranjeSoftvera_Projekat\DatabaseTestProject\obj\Debug\DatabaseTestProject.dll
+C:\Users\user\source\repos\MAS_TestiranjeSoftvera_Projekat\DatabaseTestProject\obj\Debug\DatabaseTestProject.pdb

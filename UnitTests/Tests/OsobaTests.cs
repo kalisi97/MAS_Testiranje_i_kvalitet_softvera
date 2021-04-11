@@ -12,6 +12,7 @@ using static MAS_TestiranjeSoftvera_Projekat.Extensions.Enums;
 
 namespace UnitTests.Tests
 {
+    [TestFixture]
     public class OsobaTests
     {
         private Mock<IRepositoryOsoba> mockOsobaRepository = Mocks.MockClass.MockRepositoryOsoba();
@@ -181,7 +182,7 @@ namespace UnitTests.Tests
                     newOsoba.MestoId = null;
                     Assert.Throws<Exception>(() => service.Insert(newOsoba), "Nevalidan unos za parametar: Mesto, odaberite mesto!");
                     break;
-                default: break;
+                default: Assert.Throws<Exception>(() => service.Insert(newOsoba)); break;
             }
         }
         [Test]

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace UnitTests.Tests
 {
+    [TestFixture]
     public class MestoTests
     {
         private Mock<IRepositoryMesto> mockRepositoryMesto = Mocks.MockClass.MockRepositoryMesto();
@@ -67,7 +68,7 @@ namespace UnitTests.Tests
 
             var newMesto = new Mesto
             {
-                Naziv = "Nis",
+                Naziv = "Novo mesto",
                 PttBroj = 18000,
                 BrojStanovnika = 256000
             };
@@ -112,7 +113,7 @@ namespace UnitTests.Tests
                     newMesto.BrojStanovnika = Convert.ToInt32(vrednost);
                     Assert.Throws<Exception>(() => service.Insert(newMesto), "Nevalidan unos za parametar: BrojStanovnika, broj stanovnika ne moze biti manji od nule");
                     break;
-                        default: break;
+                        default: Assert.Throws<Exception>(() => service.Insert(newMesto)); break;
             }
         }
         

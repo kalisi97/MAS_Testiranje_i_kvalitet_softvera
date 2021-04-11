@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutomatedUITests
@@ -98,6 +99,40 @@ namespace AutomatedUITests
                 }
                 Assert.AreEqual(expectedMessage, errorMessage);
             }
-    }
-    }
+
+            [Test]
+            public void CreateOsobaSuccessfully()
+            {
+                _driver.Navigate()
+                    .GoToUrl("https://localhost:44341/Osoba/Create");
+
+                _driver.FindElement(By.Id("mBroj")).SendKeys("1704997385281");
+                _driver.FindElement(By.Id("ime")).SendKeys("Ime");
+                _driver.FindElement(By.Id("prezime")).SendKeys("Prezime");
+                _driver.FindElement(By.Id("email")).SendKeys("ip@gmail.rs");
+                 IWebElement webElementDateTime = _driver.FindElement(By.Id("datumRodjenja"));
+                 webElementDateTime.SendKeys("10/10/1997");
+                 webElementDateTime.SendKeys(Keys.Tab);
+                 webElementDateTime.SendKeys("0245PM");
+                _driver.FindElement(By.Id("mestoId")).SendKeys("1");
+                _driver.FindElement(By.Id("btnCreate")).Click();
+                IWebElement itemtext = _driver.FindElement(By.Id("tabelaOsoba"));
+                Assert.AreEqual("Index - MAS_TestiranjeSoftvera_Projekat", _driver.Title);
+                Assert.That(itemtext.Text.Contains("1704997385281"));
+            }
+
+            [Test]
+            public void DeleteOsobaSuccessfully()
+            {
+                _driver.Navigate()
+                    .GoToUrl("https://localhost:44341/Osoba/Delete/2");
+                var mBroj = _driver.FindElement(By.Id("mBroj")).GetAttribute("value");
+                _driver.FindElement(By.Id("btnDelete")).Click();
+                Thread.Sleep(2000);
+                Assert.AreEqual("Index - MAS_TestiranjeSoftvera_Projekat", _driver.Title);
+                IWebElement itemtext = _driver.FindElement(By.Id("tabelaOsoba"));
+                Assert.That(!itemtext.Text.Contains(mBroj));
+            }
+        }
+}
 
